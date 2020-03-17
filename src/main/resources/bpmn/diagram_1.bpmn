@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" id="Definitions_1w29pcq" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.0">
+  <bpmn:process id="Process_Loan_Application" isExecutable="true">
+    <bpmn:startEvent id="StartProcess" name="Заведение кредитной заявки">
+      <bpmn:outgoing>Flow_0l4r5u5</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0l4r5u5" sourceRef="StartProcess" targetRef="Activity_Mini_App" />
+    <bpmn:userTask id="Activity_Mini_App" name="Заполнение мини-анкеты">
+      <bpmn:incoming>Flow_0l4r5u5</bpmn:incoming>
+      <bpmn:outgoing>Flow_135kv6w</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_Full_App" name="Заполнение полной заявки">
+      <bpmn:incoming>Flow_19w05im</bpmn:incoming>
+      <bpmn:outgoing>Flow_12jeufr</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndProcess" name="Выдача кредита">
+      <bpmn:incoming>Flow_0nnim9a</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="SaveMiniApplication" name="Сохранение мини-анкеты" camunda:delegateExpression="${loanApplicationDelegate}">
+      <bpmn:incoming>Flow_135kv6w</bpmn:incoming>
+      <bpmn:outgoing>Flow_19w05im</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_135kv6w" sourceRef="Activity_Mini_App" targetRef="SaveMiniApplication" />
+    <bpmn:sequenceFlow id="Flow_19w05im" sourceRef="SaveMiniApplication" targetRef="Activity_Full_App" />
+    <bpmn:serviceTask id="SaveFullApplication" name="Сохранение полной заявки" camunda:delegateExpression="${loanApplicationDelegate}">
+      <bpmn:incoming>Flow_12jeufr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0nnim9a</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_12jeufr" sourceRef="Activity_Full_App" targetRef="SaveFullApplication" />
+    <bpmn:sequenceFlow id="Flow_0nnim9a" sourceRef="SaveFullApplication" targetRef="EndProcess" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_Loan_Application">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartProcess">
+        <dc:Bounds x="182" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="155" y="142" width="90" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0l4r5u5_di" bpmnElement="Flow_0l4r5u5">
+        <di:waypoint x="218" y="117" />
+        <di:waypoint x="290" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1o1hg04_di" bpmnElement="Activity_Mini_App">
+        <dc:Bounds x="290" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_03sfrar_di" bpmnElement="Activity_Full_App">
+        <dc:Bounds x="670" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1sugd3t_di" bpmnElement="EndProcess">
+        <dc:Bounds x="1112" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1089" y="142" width="83" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0a4uxil_di" bpmnElement="SaveMiniApplication">
+        <dc:Bounds x="470" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_135kv6w_di" bpmnElement="Flow_135kv6w">
+        <di:waypoint x="390" y="117" />
+        <di:waypoint x="470" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_19w05im_di" bpmnElement="Flow_19w05im">
+        <di:waypoint x="570" y="117" />
+        <di:waypoint x="670" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1c2wmx6_di" bpmnElement="SaveFullApplication">
+        <dc:Bounds x="890" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_12jeufr_di" bpmnElement="Flow_12jeufr">
+        <di:waypoint x="770" y="117" />
+        <di:waypoint x="890" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0nnim9a_di" bpmnElement="Flow_0nnim9a">
+        <di:waypoint x="990" y="117" />
+        <di:waypoint x="1112" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

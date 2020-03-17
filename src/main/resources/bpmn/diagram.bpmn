@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_1wnwpr1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="3.7.0">
+  <bpmn:process id="Process_test" isExecutable="true">
+    <bpmn:startEvent id="Circle_start" name="Начало процесса">
+      <bpmn:outgoing>Flow_15t7r9b</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_15t7r9b" sourceRef="Circle_start" targetRef="Activity_01" />
+    <bpmn:userTask id="Activity_01" name="Пользовательская задача">
+      <bpmn:incoming>Flow_15t7r9b</bpmn:incoming>
+      <bpmn:outgoing>Flow_1liag1y</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="Circle_end" name="Конец процесса">
+      <bpmn:incoming>Flow_1liag1y</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1liag1y" sourceRef="Activity_01" targetRef="Circle_end" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_test">
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="Circle_start">
+        <dc:Bounds x="182" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="157" y="142" width="89" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_15t7r9b_di" bpmnElement="Flow_15t7r9b">
+        <di:waypoint x="218" y="117" />
+        <di:waypoint x="340" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Activity_1nathuj_di" bpmnElement="Activity_01">
+        <dc:Bounds x="340" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_03jomwi_di" bpmnElement="Circle_end">
+        <dc:Bounds x="562" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="539" y="142" width="82" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1liag1y_di" bpmnElement="Flow_1liag1y">
+        <di:waypoint x="440" y="117" />
+        <di:waypoint x="562" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
