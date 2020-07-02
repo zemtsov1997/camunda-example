@@ -24,7 +24,7 @@
         <maven.surefire.version>2.22.0</maven.surefire.version>
 
         <h2.version>1.4.200</h2.version>
-        <mysql.version>8.0.15</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <jackson.version>2.9.8</jackson.version>
     </properties>
 
